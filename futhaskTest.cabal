@@ -1,0 +1,90 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           futhaskTest
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/FutharkExample#readme>
+homepage:       https://github.com/githubuser/futhaskTest#readme
+bug-reports:    https://github.com/githubuser/futhaskTest/issues
+author:         Author name here
+maintainer:     ianmbloom@gmail.com
+copyright:      2021 Ian Bloom
+license:        BSD3
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/futhaskTest
+
+library
+  exposed-modules:
+      Futhark
+      Futhark.Config
+      Futhark.Context
+      Futhark.Entries
+      Futhark.Fut
+      Futhark.Raw
+      Futhark.TypeClasses
+      Futhark.Types
+      Futhark.Utils
+      Futhark.Wrap
+      FuthaskTest.Image
+      FuthaskTest.Type
+  other-modules:
+      Paths_futhaskTest
+  hs-source-dirs:
+      src
+  include-dirs:
+      /opt/cuda/include
+  c-sources:
+      fut/entries.c
+  extra-lib-dirs:
+      /opt/cuda/lib
+  extra-libraries:
+      cuda cudart nvrtc OpenCL
+  build-depends:
+      MonadRandom
+    , OpenCL
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , cuda
+    , deepseq
+    , massiv
+    , massiv-io
+    , monad-control
+    , mtl
+    , transformers
+    , transformers-base
+  default-language: Haskell2010
+
+executable image-loop
+  main-is: Main.hs
+  other-modules:
+      Paths_futhaskTest
+  hs-source-dirs:
+      app/image-loop
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      MonadRandom
+    , OpenCL
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , cuda
+    , deepseq
+    , directory
+    , futhaskTest
+    , massiv
+    , massiv-io
+    , monad-control
+    , mtl
+    , transformers
+    , transformers-base
+  default-language: Haskell2010
